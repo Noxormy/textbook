@@ -1,6 +1,7 @@
 import React from "react"
 import {Link, useLocation} from "react-router-dom"
 import {Breadcrumb} from "antd"
+import PropTypes from "prop-types"
 import {capitalize} from "../../utils/string"
 
 
@@ -17,7 +18,7 @@ function getBreadcrumbName(item) {
     return item === "" ? "Home" : capitalize(item)
 }
 
-function BreadcrumbDefault() {
+function BreadcrumbDefault({classname}) {
     const location = useLocation()
     let routes
 
@@ -33,9 +34,11 @@ function BreadcrumbDefault() {
         }))
     }
 
-    console.log(routes)
+    return (<Breadcrumb className={classname} itemRender={itemRender} routes={routes}/>)
+}
 
-    return (<Breadcrumb itemRender={itemRender} routes={routes}/>)
+BreadcrumbDefault.propTypes = {
+    classname: PropTypes.string
 }
 
 export {BreadcrumbDefault}

@@ -16,7 +16,7 @@ function App() {
                 <Header/>
                 <Router>
                     <Layout>
-                        <BreadcrumbDefault/>
+                        <BreadcrumbDefault classname="breadcrumb"/>
                         <Routes>
                             <Route exact path="/" element={<Home/>}/>
                             <Route path="/article" element={<Article/>}/>
