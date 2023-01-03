@@ -5,6 +5,7 @@ import "./index.sass"
 function Header() {
     return (
         <header>
+            <label>HandbookHub</label>
         </header>
     )
 }
