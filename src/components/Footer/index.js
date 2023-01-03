@@ -3,10 +3,10 @@ import "./index.sass"
 
 
 function Footer() {
-	return (
-		<header>
-		</header>
-	)
+    return (
+        <footer>
+        </footer>
+    )
 }
 
 export {Footer}

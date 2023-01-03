@@ -2,11 +2,12 @@ import React from "react"
 import "./index.sass"
 
 
-function Home() {
+function Article() {
     return (
         <div>
+			asdasd
         </div>
     )
 }
 
-export {Home}
+export {Article}
