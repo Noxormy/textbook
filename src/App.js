@@ -6,7 +6,7 @@ import {Header} from "./components/Header"
 import {Footer} from "./components/Footer"
 import {BreadcrumbDefault} from "./components/Breadcrumb"
 import {Home} from "./pages/Home"
-import {Article} from "./pages/Article"
+import {Articles} from "./pages/Articles"
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
                         <BreadcrumbDefault classname="breadcrumb"/>
                         <Routes>
                             <Route exact path="/" element={<Home/>}/>
-                            <Route path="/article" element={<Article/>}/>
+                            <Route path="/articles" element={<Articles/>}/>
                         </Routes>
                     </Layout>
                 </Router>
