@@ -34,8 +34,6 @@ function BreadcrumbDefault({classname}) {
         }))
     }
 
-    console.log(routes)
-
     return (<Breadcrumb className={classname} itemRender={itemRender} routes={routes}/>)
 }
 
