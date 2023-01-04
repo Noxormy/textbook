@@ -3,7 +3,7 @@ import { useLoadingContext } from "react-router-loading"
 import {CategoryCard} from "../../components/CategoryCard"
 import {getCategories} from "../../utils/api"
 import {toSnakeCase} from "../../utils/string"
-import {Card} from "../../components/Card"
+import {Typography} from "antd"
 import "./index.sass"
 
 
@@ -29,7 +29,10 @@ function Home() {
     return (
         <div className="home">
             <div className="content">
-                <Card className="welcome_card" title="Your handbook of local laws and rules" description="Here all the community is going to help each other understand all the rules, laws and obstacles you may encounter in their country"/>
+                <div className="welcome_card">
+                    <Typography.Title level={3}>Your handbook of local laws and rules</Typography.Title>
+                    <label>Here, all members of the community will help each other understand all the rules, laws, and obstacles you may encounter in their country.  You can join and contribute to our community through the <Typography.Link href="https://github.com/handbookhub">github repository</Typography.Link>, where everyone can contribute an article or fix</label>
+                </div>
                 {categories.map((item, key) => (
                     <CategoryCard link={toSnakeCase(item.name)} cover={item.image} title={item.name} key={key}/>
                 ))}
