@@ -2,7 +2,7 @@ import React from "react"
 import {Link, useLocation} from "react-router-dom"
 import {Breadcrumb} from "antd"
 import PropTypes from "prop-types"
-import {capitalize} from "../../utils/string"
+import {formatMultipleWords} from "../../utils/string"
 
 
 function itemRender(route, params, routes, paths) {
@@ -19,7 +19,7 @@ function getBreadcrumbName(item) {
         return "Home"
     }
 
-    return item.split("_").map(item => capitalize(item)).join(" ")
+    return formatMultipleWords(item)
 }
 
 function BreadcrumbDefault({classname}) {
