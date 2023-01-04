@@ -9,8 +9,16 @@ function Home() {
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        getCategories().then(data => setCategories(data))
+        getCategories().then(data => setCategories(data)).catch(() => setCategories(null))
     }, [])
+
+    if(categories == null) {
+        return (
+            <div className="home">
+                <label>Something went wrong</label>
+            </div>
+        )
+    }
 
     return (
         <div className="home">

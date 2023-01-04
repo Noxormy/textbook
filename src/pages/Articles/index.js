@@ -12,10 +12,18 @@ function Articles() {
     const [articles, setArticles] = useState([])
 
     useEffect(() => {
-        getArticles(category).then(data => setArticles(data))
+        getArticles(category).then(data => setArticles(data)).catch(() => setArticles(null))
     }, [])
 
     console.log(articles)
+
+    if(articles == null) {
+        return (
+            <div className="articles">
+                <label>Something went wrong</label>
+            </div>
+        )
+    }
 
     return (
         <div className="articles">
