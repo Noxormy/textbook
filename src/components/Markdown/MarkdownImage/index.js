@@ -21,7 +21,7 @@ function MarkdownImage({src="", alt="cover"}) {
 
     console.log(src)
 
-    return <Image src={imageSource} alt={alt}/>
+    return <Image className={`markdown_image ${imageSource === imagePlaceholder ? "placeholder" : ""}`} src={imageSource} alt={alt}/>
 }
 
 MarkdownImage.propTypes = {

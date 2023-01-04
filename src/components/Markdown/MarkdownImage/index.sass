@@ -1,11 +1,9 @@
-.markdown
-  h1:first-child, h2:first-child
-    margin-top: 0
-
-  h1, h2
-    & + .ant-divider
-      margin-bottom: 15px
-      margin-top: -10px
+.ant-typography:has(.ant-image)
+  width: 100%
 
   .ant-image
-    margin-bottom: 15px
+    width: 100%
+
+    img.placeholder
+      max-height: 400px
+      object-fit: cover
