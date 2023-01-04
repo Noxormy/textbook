@@ -1,12 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {Link} from "react-router-dom"
-import {imagePlaceholder} from "../../utils/common"
+import placeholder from "../../assets/placeholder.svg"
 import "./index.sass"
 
 
 function CategoryCard({link="", cover="", alt="cover", title=""}) {
-    const src = cover ? cover : imagePlaceholder
+    const src = cover ? cover : placeholder
 
     return (
         <Link to={link} className="category_card">
