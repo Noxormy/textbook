@@ -15,7 +15,11 @@ function itemRender(route, params, routes, paths) {
 }
 
 function getBreadcrumbName(item) {
-    return item === "" ? "Home" : capitalize(item)
+    if(item === "") {
+        return "Home"
+    }
+
+    return item.split("_").map(item => capitalize(item)).join(" ")
 }
 
 function BreadcrumbDefault({classname}) {
