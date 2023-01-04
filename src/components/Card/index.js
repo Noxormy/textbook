@@ -3,14 +3,13 @@ import PropTypes from "prop-types"
 import Meta from "antd/es/card/Meta"
 import {Link} from "react-router-dom"
 import {Card as AntdCard} from "antd"
-import placeholder from "../../assets/placeholder.svg"
 import "./index.sass"
 
 
-function Card({link="", cover=placeholder, alt="cover", title="", description="", loading=false}) {
+function Card({className="", link="", cover="", alt="cover", title="", description=""}) {
     return (
-        <Link to={link} className="card">
-            <AntdCard cover={loading ? null : <img src={cover} alt={alt}/>} loading={loading}>
+        <Link to={link} className={`card ${className}`}>
+            <AntdCard cover={cover ? <img src={cover} alt={alt}/> : null}>
                 <Meta title={title} description={description} />
             </AntdCard>
         </Link>
@@ -18,6 +17,7 @@ function Card({link="", cover=placeholder, alt="cover", title="", description=""
 }
 
 Card.propTypes = {
+    className: PropTypes.string,
     link: PropTypes.string,
     cover: PropTypes.string,
     alt: PropTypes.string,
