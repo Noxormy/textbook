@@ -5,6 +5,7 @@ import "./index.sass"
 function Footer() {
     return (
         <footer>
+            created by @nnoxnnox
         </footer>
     )
 }
