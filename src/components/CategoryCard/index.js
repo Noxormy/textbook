@@ -1,20 +1,17 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Meta from "antd/es/card/Meta"
 import {Link} from "react-router-dom"
-import {Card as AntdCard} from "antd"
 import {imagePlaceholder} from "../../utils/common"
 import "./index.sass"
 
 
-function CategoryCard({link="", cover="", alt="cover", title="", description=""}) {
+function CategoryCard({link="", cover="", alt="cover", title=""}) {
     const src = cover ? cover : imagePlaceholder
 
     return (
-        <Link to={link} className="card">
-            <AntdCard cover={<img src={src} alt={alt}/>}>
-                <Meta title={title} description={description} />
-            </AntdCard>
+        <Link to={link} className="category_card">
+            <img src={src} alt={alt}/>
+            <label>{title}</label>
         </Link>
     )
 }
