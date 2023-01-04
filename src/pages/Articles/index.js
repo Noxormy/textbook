@@ -29,14 +29,16 @@ function Articles() {
 
     return (
         <div className="articles">
-            {articles.map((item, key) => (
-                <Card link={toSnakeCase(item.name)}
-                    cover={item.image}
-                    alt={item.name}
-                    title={item.name}
-                    description={item.description}
-                    key={key}/>
-            ))}
+            <div className="content">
+                {articles.map((item, key) => (
+                    <Card link={toSnakeCase(item.name)}
+                        cover={item.image}
+                        alt={item.name}
+                        title={item.name}
+                        description={item.description}
+                        key={key}/>
+                ))}
+            </div>
         </div>
     )
 }

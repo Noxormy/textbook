@@ -27,9 +27,11 @@ function Home() {
 
     return (
         <div className="home">
-            {categories.map((item, key) => (
-                <CategoryCard link={toSnakeCase(item.name)} cover={item.image} title={item.name} key={key}/>
-            ))}
+            <div className="content">
+                {categories.map((item, key) => (
+                    <CategoryCard link={toSnakeCase(item.name)} cover={item.image} title={item.name} key={key}/>
+                ))}
+            </div>
         </div>
     )
 }
