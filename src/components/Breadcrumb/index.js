@@ -2,7 +2,8 @@ import React from "react"
 import {Link, useLocation} from "react-router-dom"
 import {Breadcrumb} from "antd"
 import PropTypes from "prop-types"
-import {formatMultipleWords} from "../../utils/string"
+import {toRegularCase} from "../../utils/string"
+import "./index.sass"
 
 
 function itemRender(route, params, routes, paths) {
@@ -19,7 +20,7 @@ function getBreadcrumbName(item) {
         return "Home"
     }
 
-    return formatMultipleWords(item)
+    return toRegularCase(item)
 }
 
 function BreadcrumbDefault({classname}) {

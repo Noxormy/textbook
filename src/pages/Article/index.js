@@ -5,11 +5,11 @@ import {getArticle} from "../../utils/api"
 import "./index.sass"
 
 function Article() {
-    let { articleId } = useParams()
+    let { category, articleId } = useParams()
     const [markdown, setMarkdown] = useState(null)
 
     useEffect(() => {
-        getArticle(articleId).then(data => setMarkdown(data))
+        getArticle(category, articleId).then(data => setMarkdown(data))
     }, [])
 
     if(!markdown) {

@@ -1,18 +1,22 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
+import {CategoryCard} from "../../components/CategoryCard"
+import {getCategories} from "../../utils/api"
+import {toSnakeCase} from "../../utils/string"
 import "./index.sass"
-import {Link} from "react-router-dom"
-import {Card} from "antd"
-import Meta from "antd/es/card/Meta"
 
 
 function Home() {
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        getCategories().then(data => setCategories(data))
+    }, [])
+
     return (
         <div className="home">
-            <Link to="/articles">
-                <Card cover={<img src="https://pix4free.org/assets/library/2021-01-21/originals/cohabitation_laws.jpg" alt="cover"/>}>
-                    <Meta title="Law articles" description="How to face with the law" />
-                </Card>
-            </Link>
+            {categories.map((item, key) => (
+                <CategoryCard link={toSnakeCase(item.name)} cover={item.image} title={item.name} key={key}/>
+            ))}
         </div>
     )
 }

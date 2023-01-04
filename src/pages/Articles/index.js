@@ -1,32 +1,32 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import "./index.sass"
 import {Card} from "../../components/Card"
+import {useParams} from "react-router-dom"
+import {getArticles} from "../../utils/api"
+import {toSnakeCase} from "../../utils/string"
 
 
 function Articles() {
+    let { category } = useParams()
+    // eslint-disable-next-line no-unused-vars
+    const [articles, setArticles] = useState([])
+
+    useEffect(() => {
+        getArticles(category).then(data => setArticles(data))
+    }, [])
+
+    console.log(articles)
+
     return (
         <div className="articles">
-            <Card link="/articles/german-policeman"
-                cover="https://gumlet.assettype.com/wuzupnigeria%2F2022-01%2Ff21f0ecd-09b9-46a2-b478-cb8820e045f5%2FPOLIZEI.jpg?format=auto"
-                alt="cover"
-                title="German Policeman"
-                description="How to talk with the police"/>
-            <Card link="/articles/german-policeman"
-                alt="cover"
-                title="German Policeman"
-                description="How to talk with the police"/>
-            <Card link="/articles/german-policeman"
-                alt="cover"
-                title="German Policeman"
-                description="How to talk with the police"/>
-            <Card link="/articles/german-policeman"
-                alt="cover"
-                title="German Policeman"
-                description="How to talk with the police"/>
-            <Card link="/articles/german-policeman"
-                alt="cover"
-                title="German Policeman"
-                description="How to talk with the police"/>
+            {articles.map((item, key) => (
+                <Card link={toSnakeCase(item.name)}
+                    cover={item.image}
+                    alt={item.name}
+                    title={item.name}
+                    description={"asdas"}
+                    key={key}/>
+            ))}
         </div>
     )
 }

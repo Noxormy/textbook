@@ -20,8 +20,8 @@ function App() {
                         <BreadcrumbDefault classname="breadcrumb"/>
                         <Routes>
                             <Route exact path="/" element={<Home/>}/>
-                            <Route path="/articles" element={<Articles/>}/>
-                            <Route path="/articles/:articleId" element={<Article/>}/>
+                            <Route path="/:category" element={<Articles/>}/>
+                            <Route path="/:category/:articleId" element={<Article/>}/>
                         </Routes>
                     </Layout>
                     <Footer/>

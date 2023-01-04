@@ -1,8 +1,13 @@
-import {formatMultipleWords} from "./string"
+import {toRegularCase} from "./string"
 
 const OWNER = "handbookhub"
 const REPO = "laws"
-const getApi = (owner, repo, path) => `https://api.github.com/repos/${owner}/${repo}/contents/${path}`
+const COUNTRY = "Germany"
+
+const ICON_NAME = "icon.png"
+const LANGUAGE = "en"
+
+const getApi = (owner, repo, path) => `https://api.github.com/repos/${owner}/${repo}/contents/${COUNTRY}/${path}`
 const getBlobApi = (owner, repo, sha) => `https://api.github.com/repos/${owner}/${repo}/git/blobs/${sha}`
 
 export async function getGitFile(owner, repo, path) {
@@ -13,6 +18,42 @@ export async function getGitFile(owner, repo, path) {
         .then(d => atob(d.content))
 }
 
-export async function getArticle(article) {
-    return getGitFile(OWNER, REPO, `${formatMultipleWords(article)}.md`)
+export async function getArticle(category, article) {
+    return getGitFile(OWNER, REPO, `${toRegularCase(category)}/${toRegularCase(article)}/${LANGUAGE}.md`)
+}
+
+export async function getArticles(category) {
+    let data = await fetch(getApi(OWNER, REPO, toRegularCase(category)))
+        .then(d => d.json())
+        .then(d => d.filter(item => item.type === "dir")
+            .map(item => ({
+                name: item.name,
+                link: item.git_url
+            }))
+        )
+
+    for(let item of data) {
+        let image_link = await fetch(item.link).then(d => d.json()).then(d => d.tree.find(i => i.path === ICON_NAME).url)
+        item.image = `data:image/png;base64,${await fetch(image_link).then(d => d.json()).then(d => d.content)}`
+    }
+
+    return data
+}
+
+export async function getCategories() {
+    let data = await fetch(getApi(OWNER, REPO, ""))
+        .then(d => d.json())
+        .then(d => d.filter(item => item.type === "dir")
+            .map(item => ({
+                name: item.name,
+                link: item.git_url
+            }))
+        )
+
+    for(let item of data) {
+        let image_link = await fetch(item.link).then(d => d.json()).then(d => d.tree.find(i => i.path === ICON_NAME).url)
+        item.image = `data:image/png;base64,${await fetch(image_link).then(d => d.json()).then(d => d.content)}`
+    }
+
+    return data
 }
