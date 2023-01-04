@@ -1,10 +1,12 @@
 import {toRegularCase} from "./string"
 
+// const AUTH = "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"
+
 const OWNER = "handbookhub"
 const REPO = "laws"
 const COUNTRY = "Germany"
 
-const ICON_NAME = "icon.png"
+const ICON_NAME = "Icon.png"
 const LANGUAGE = "en"
 
 const getApi = (owner, repo, path) => `https://api.github.com/repos/${owner}/${repo}/contents/${COUNTRY}/${path}`
@@ -56,4 +58,13 @@ export async function getCategories() {
     }
 
     return data
+}
+
+export async function getImage(path) {
+    let realPath = path.split("/").map(item => toRegularCase(item)).filter((item, idx) => !(idx === 0 && item === "")).join("/")
+    return await fetch(getApi(OWNER, REPO, realPath))
+        .then(d => d.json())
+        .then(d => fetch(d.git_url))
+        .then(d => d.json())
+        .then(d => `data:image/png;base64,${d.content}`)
 }

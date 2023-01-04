@@ -2,8 +2,10 @@ import React from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import PropTypes from "prop-types"
-import {Divider, Typography, Image} from "antd"
+import {Divider, Typography} from "antd"
+import {MarkdownImage} from "./MarkdownImage"
 import "./index.sass"
+
 
 function Markdown({markdown}) {
     return (
@@ -16,7 +18,7 @@ function Markdown({markdown}) {
             a: ({node, children}) => <Typography.Link href={node.properties.href}>{children}</Typography.Link>,
             p: ({children}) => <Typography.Text>{children}</Typography.Text>,
             hr: () => <Divider/>,
-            img: ({src, alt}) => <Image src={src} alt={alt}/>
+            img: ({src, alt}) => <MarkdownImage src={src} alt={alt}/>
         }}>
             {markdown}
         </ReactMarkdown>
