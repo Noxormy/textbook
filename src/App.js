@@ -14,8 +14,8 @@ function App() {
     return (
         <div className="page">
             <Layout>
-                <Header/>
                 <Router>
+                    <Header/>
                     <Layout>
                         <BreadcrumbDefault classname="breadcrumb"/>
                         <Routes>
@@ -24,8 +24,8 @@ function App() {
                             <Route path="/articles/:articleId" element={<Article/>}/>
                         </Routes>
                     </Layout>
+                    <Footer/>
                 </Router>
-                <Footer/>
             </Layout>
         </div>
     )

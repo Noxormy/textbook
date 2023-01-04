@@ -1,11 +1,12 @@
 import React from "react"
 import "./index.sass"
+import {Link} from "react-router-dom"
 
 
 function Header() {
     return (
         <header>
-            <label>HandbookHub</label>
+            <Link to="/"><label>HandbookHub</label></Link>
         </header>
     )
 }
