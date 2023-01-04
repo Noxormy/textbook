@@ -15,8 +15,6 @@ function Articles() {
         getArticles(category).then(data => setArticles(data)).catch(() => setArticles(null))
     }, [])
 
-    console.log(articles)
-
     if(articles == null) {
         return (
             <div className="articles">
@@ -32,7 +30,7 @@ function Articles() {
                     cover={item.image}
                     alt={item.name}
                     title={item.name}
-                    description={"asdas"}
+                    description={item.description}
                     key={key}/>
             ))}
         </div>

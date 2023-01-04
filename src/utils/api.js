@@ -7,6 +7,7 @@ const REPO = "laws"
 const COUNTRY = "Germany"
 
 const ICON_NAME = "Icon.png"
+const DESCRIPTION_NAME = "Description.md"
 const LANGUAGE = "en"
 
 const getApi = (owner, repo, path) => `https://api.github.com/repos/${owner}/${repo}/contents/${COUNTRY}/${path}`
@@ -35,8 +36,12 @@ export async function getArticles(category) {
         )
 
     for(let item of data) {
-        let image_link = await fetch(item.link).then(d => d.json()).then(d => d.tree.find(i => i.path === ICON_NAME).url)
+        let item_info = await fetch(item.link).then(d => d.json())
+        let image_link = item_info.tree.find(i => i.path === ICON_NAME).url
         item.image = `data:image/png;base64,${await fetch(image_link).then(d => d.json()).then(d => d.content)}`
+
+        let description_link = item_info.tree.find(i => i.path === DESCRIPTION_NAME).url
+        item.description = atob(await fetch(description_link).then(d => d.json()).then(d => d.content))
     }
 
     return data
