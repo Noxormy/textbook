@@ -13,7 +13,7 @@ function Markdown({markdown}) {
             h3: ({level, children}) => <Typography.Title level={level}>{children}</Typography.Title>,
             h4: ({level, children}) => <Typography.Title level={level}>{children}</Typography.Title>,
             h5: ({level, children}) => <Typography.Title level={level}>{children}</Typography.Title>,
-            a: ({node, children}) => <a href={node.properties.href}><Typography.Link>{children}</Typography.Link></a>,
+            a: ({node, children}) => <Typography.Link href={node.properties.href}>{children}</Typography.Link>,
             p: ({children}) => <Typography.Text>{children}</Typography.Text>,
             hr: () => <Divider/>,
             img: ({src, alt}) => <Image src={src} alt={alt}/>
