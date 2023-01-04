@@ -4,15 +4,19 @@ import {Card} from "../../components/Card"
 import {useParams} from "react-router-dom"
 import {getArticles} from "../../utils/api"
 import {toSnakeCase} from "../../utils/string"
+import {useLoadingContext} from "react-router-loading"
 
 
 function Articles() {
     let { category } = useParams()
-    // eslint-disable-next-line no-unused-vars
+    const loadingContext = useLoadingContext()
     const [articles, setArticles] = useState([])
 
     useEffect(() => {
-        getArticles(category).then(data => setArticles(data)).catch(() => setArticles(null))
+        getArticles(category)
+            .then(data => setArticles(data))
+            .then(() => loadingContext.done())
+            .catch(() => setArticles(null))
     }, [])
 
     if(articles == null) {

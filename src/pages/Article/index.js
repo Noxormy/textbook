@@ -2,14 +2,20 @@ import React, {useEffect, useState} from "react"
 import {useParams} from "react-router-dom"
 import {Markdown} from "../../components/Markdown"
 import {getArticle} from "../../utils/api"
+import {useLoadingContext} from "react-router-loading"
 import "./index.sass"
 
 function Article() {
     let { category, articleId } = useParams()
+    const loadingContext = useLoadingContext()
+
     const [markdown, setMarkdown] = useState(null)
 
     useEffect(() => {
-        getArticle(category, articleId).then(data => setMarkdown(data)).catch(() => setMarkdown(1))
+        getArticle(category, articleId)
+            .then(data => setMarkdown(data))
+            .then(() => loadingContext.done())
+            .catch(() => setMarkdown(1))
     }, [])
 
     if(!markdown) {
