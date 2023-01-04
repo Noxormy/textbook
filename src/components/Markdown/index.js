@@ -2,7 +2,7 @@ import React from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import PropTypes from "prop-types"
-import {Divider, Typography} from "antd"
+import {Divider, Typography, Image} from "antd"
 import {Link} from "react-router-dom"
 import "./index.sass"
 
@@ -16,7 +16,8 @@ function Markdown({markdown}) {
             h5: ({level, children}) => <Typography.Title level={level}>{children}</Typography.Title>,
             a: ({node, children}) => <Link to={node.properties.href} component={Typography.Link}>{children}</Link>,
             p: ({children}) => <Typography.Text>{children}</Typography.Text>,
-            hr: () => <Divider/>
+            hr: () => <Divider/>,
+            img: ({src, alt}) => <Image src={src} alt={alt}/>
         }}>
             {markdown}
         </ReactMarkdown>

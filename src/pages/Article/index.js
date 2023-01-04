@@ -18,7 +18,9 @@ function Article() {
 
     return (
         <div className="article">
-            <Markdown markdown={markdown}/>
+            <div className="content">
+                <Markdown markdown={markdown}/>
+            </div>
         </div>
     )
 }
