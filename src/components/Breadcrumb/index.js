@@ -29,10 +29,12 @@ function BreadcrumbDefault({classname}) {
         }]
     } else {
         routes = location.pathname.split("/").map((item, i) => ({
-            path: `/${location.pathname.split("/").splice(0, i).join("/")}`,
+            path: `${location.pathname.split("/").splice(0, i + 1).join("/")}`,
             breadcrumbName: getBreadcrumbName(item)
         }))
     }
+
+    console.log(routes)
 
     return (<Breadcrumb className={classname} itemRender={itemRender} routes={routes}/>)
 }
