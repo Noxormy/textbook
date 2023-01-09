@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import placeholder from "../../assets/placeholder.svg"
 import {Image as AntImage} from "antd"
-import {useImage, useImageWithLoader} from "../../utils/common"
+import {useImage, useImageWithLoader} from "../../utils/hooks"
 import "./index.sass"
 
 
