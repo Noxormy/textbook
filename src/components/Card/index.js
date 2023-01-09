@@ -8,7 +8,7 @@ import "./index.sass"
 
 
 function Card({className="", link="", cover="", alt="cover", title="", description=""}) {
-    const src = cover ? `data:image/png;base64, ${cover}` : placeholder
+    const src = cover ? cover : placeholder
 
     return (
         <Link to={link} className={`card ${className}`}>

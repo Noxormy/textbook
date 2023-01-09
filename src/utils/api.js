@@ -1,8 +1,10 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client"
 import {toRegularCase} from "./string"
 
+const API = "http://localhost:80"
+
 export const client = new ApolloClient({
-    uri: "http://130.61.57.117:8000/graphql",
+    uri: `${API}/graphql`,
     cache: new InMemoryCache(),
 })
 
@@ -35,9 +37,5 @@ export const Requests = {
             }
         }
     `,
-    getImage: (path) => gql`
-        query {
-            image(path: "${path.split("/").map(item => toRegularCase(item)).join("/")}")
-        }
-    `
+    getImage: (path) => `${API}/image?path=${path.split("/").map(item => toRegularCase(item)).join("/")}`
 }
