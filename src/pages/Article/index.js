@@ -13,10 +13,10 @@ function Article() {
     const { loading, error, data } = useQuery(Requests.getArticle(category, articleId))
 
     useEffect(() => {
-        if(data !== null || error !== null) {
+        if(!loading) {
             loadingContext.done()
         }
-    }, [])
+    }, [loading])
 
     if(loading) {
         return (

@@ -13,10 +13,10 @@ function Home() {
     const { loading, error, data } = useQuery(Requests.getCategories)
 
     useEffect(() => {
-        if(data !== null || error !== null) {
+        if(!loading) {
             loadingContext.done()
         }
-    }, [data])
+    }, [loading])
 
     if(loading) {
         return (
