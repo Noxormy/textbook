@@ -1,5 +1,4 @@
 import React from "react"
-import "./App.sass"
 import {Layout} from "antd"
 import {BrowserRouter as Router} from "react-router-dom"
 import { Routes, Route, topbar } from "react-router-loading"
@@ -9,26 +8,31 @@ import {BreadcrumbDefault} from "./components/Breadcrumb"
 import {Home} from "./pages/Home"
 import {Articles} from "./pages/Articles"
 import {Article} from "./pages/Article"
+import {ApolloProvider} from "@apollo/client"
+import {client} from "./utils/api"
+import "./App.sass"
 
 
 function App() {
     return (
-        <div className="page">
-            <Layout>
-                <Router>
-                    <Header/>
-                    <Layout>
-                        <BreadcrumbDefault classname="breadcrumb"/>
-                        <Routes>
-                            <Route exact path="/" element={<Home/>} loading/>
-                            <Route path="/:category" element={<Articles/>} loading/>
-                            <Route path="/:category/:articleId" element={<Article/>} loading/>
-                        </Routes>
-                    </Layout>
-                    <Footer/>
-                </Router>
-            </Layout>
-        </div>
+        <ApolloProvider client={client}>
+            <div className="page">
+                <Layout>
+                    <Router>
+                        <Header/>
+                        <Layout>
+                            <BreadcrumbDefault classname="breadcrumb"/>
+                            <Routes>
+                                <Route exact path="/" element={<Home/>} loading/>
+                                <Route path="/:category" element={<Articles/>} loading/>
+                                <Route path="/:category/:articleId" element={<Article/>} loading/>
+                            </Routes>
+                        </Layout>
+                        <Footer/>
+                    </Router>
+                </Layout>
+            </div>
+        </ApolloProvider>
     )
 }
 
