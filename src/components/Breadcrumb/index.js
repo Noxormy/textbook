@@ -39,7 +39,7 @@ function BreadcrumbDefault({classname}) {
         }))
     }
 
-    return (<Breadcrumb className={classname} itemRender={itemRender} routes={routes}/>)
+    return (<Breadcrumb className={classname} itemRender={itemRender} routes={routes} separator=">"/>)
 }
 
 BreadcrumbDefault.propTypes = {
