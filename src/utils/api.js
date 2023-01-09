@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client"
 import {toRegularCase} from "./string"
 
-const API = "http://localhost:80"
+const API = "http://130.61.57.117:8000"
 
 export const client = new ApolloClient({
     uri: `${API}/graphql`,
