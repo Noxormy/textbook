@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import {Link} from "react-router-dom"
 import placeholder from "../../assets/placeholder.svg"
+import {Image} from "../Image"
 import "./index.sass"
 
 
@@ -10,7 +11,7 @@ function CategoryCard({link="", cover="", alt="cover", title=""}) {
 
     return (
         <Link to={link} className="category_card">
-            <img src={src} alt={alt}/>
+            <Image src={src} alt={alt}/>
             <label>{title}</label>
         </Link>
     )

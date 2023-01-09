@@ -4,6 +4,7 @@ import Meta from "antd/es/card/Meta"
 import {Link} from "react-router-dom"
 import {Card as AntdCard} from "antd"
 import placeholder from "../../assets/placeholder.svg"
+import {Image} from "../Image"
 import "./index.sass"
 
 
@@ -12,7 +13,7 @@ function Card({className="", link="", cover="", alt="cover", title="", descripti
 
     return (
         <Link to={link} className={`card ${className}`}>
-            <AntdCard cover={<img src={src} alt={alt}/>}>
+            <AntdCard cover={<Image src={src} alt={alt}/>}>
                 <Meta title={title} description={description} />
             </AntdCard>
         </Link>

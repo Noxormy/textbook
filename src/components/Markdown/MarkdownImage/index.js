@@ -1,27 +1,23 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import PropTypes from "prop-types"
-import {Image} from "antd"
+import {ImageWithLoader} from "../../Image"
 import {useLocation} from "react-router-dom"
 import {Requests} from "../../../utils/api"
-import placeholder from "../../../assets/placeholder.svg"
 import "./index.sass"
 
 
 function MarkdownImage({src="", alt="cover"}) {
     const location = useLocation()
-    const [imageSource, setImageSource] = useState(placeholder)
-
-    useEffect(() => {
+    const loader = async () => {
         if(!src.includes("http") && !src.includes("base64")) {
             const path = location.pathname.slice(1)
-            const link = Requests.getImage(path)
-            setImageSource(link)
+            return Requests.getImage(path)
         } else {
-            setImageSource(src)
+            return src
         }
-    }, [])
+    }
 
-    return <Image className={`markdown_image ${imageSource === placeholder ? "placeholder" : ""}`} src={imageSource} alt={alt}/>
+    return <ImageWithLoader className="markdown_image" loader={loader} alt={alt} zoom={true}/>
 }
 
 MarkdownImage.propTypes = {
