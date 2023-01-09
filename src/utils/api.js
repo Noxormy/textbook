@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client"
 import {toRegularCase} from "./string"
 
 export const client = new ApolloClient({
-    uri: "http://localhost:80/graphql",
+    uri: "http://localhost:8000/graphql",
     cache: new InMemoryCache(),
 })
 
