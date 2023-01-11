@@ -1,16 +1,16 @@
 import React from "react"
 import PropTypes from "prop-types"
-import placeholder from "../../assets/placeholder.svg"
+import placeholderSvg from "../../assets/placeholder.svg"
 import {Image as AntImage} from "antd"
 import {useImage, useImageWithLoader} from "../../utils/hooks"
 import "./index.sass"
 
 
-function getImage(src="", className="", alt="", zoom=false, isLoading=true, props) {
+function getImage(src="", className="", alt="", zoom=false, placeholder="", isLoading=true, props) {
     props = {
         src,
         alt,
-        className: `${className} progressiveImage ${isLoading ? "placeholder" : ""}`,
+        className: `${className} progressiveImage ${isLoading && placeholder === placeholderSvg? "placeholder" : ""}`,
         ...props
     }
 
@@ -22,14 +22,16 @@ function getImage(src="", className="", alt="", zoom=false, isLoading=true, prop
 }
 
 
-function ProgressiveImage({src="", className="", alt="", zoom=false, ...props}) {
-    const [imageSrc, isLoading] = useImage(src, placeholder)
-    return getImage(imageSrc, className, alt, zoom, isLoading, props)
+function ProgressiveImage({src="", className="", alt="", zoom=false, placeholder="", ...props}) {
+    const placeHolderImage = placeholder || placeholderSvg
+    const [imageSrc, isLoading] = useImage(src, placeHolderImage)
+    return getImage(imageSrc, className, alt, zoom, placeHolderImage, isLoading, props)
 }
 
-function ProgressiveImageWithLoader({loader, className="", alt="", zoom=false, ...props}) {
-    const [imageSrc, isLoading] = useImageWithLoader(loader, placeholder)
-    return getImage(imageSrc, className, alt, zoom, isLoading, props)
+function ProgressiveImageWithLoader({loader, className="", alt="", zoom=false, placeholder="", ...props}) {
+    const placeHolderImage = placeholder || placeholderSvg
+    const [imageSrc, isLoading] = useImageWithLoader(loader, placeHolderImage)
+    return getImage(imageSrc, className, alt, zoom, placeHolderImage, isLoading, props)
 }
 
 ProgressiveImage.propTypes = {
@@ -37,6 +39,7 @@ ProgressiveImage.propTypes = {
     className: PropTypes.string,
     alt: PropTypes.string,
     zoom: PropTypes.bool,
+    placeholder: PropTypes.string,
 }
 
 ProgressiveImageWithLoader.propTypes = {
@@ -44,6 +47,7 @@ ProgressiveImageWithLoader.propTypes = {
     className: PropTypes.string,
     alt: PropTypes.string,
     zoom: PropTypes.bool,
+    placeholder: PropTypes.string,
 }
 
 export {ProgressiveImage as Image, ProgressiveImageWithLoader as ImageWithLoader}

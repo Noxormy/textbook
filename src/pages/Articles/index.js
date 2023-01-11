@@ -42,7 +42,8 @@ function Articles() {
             <div className="content">
                 {article.map((item, key) => (
                     <Card link={toSnakeCase(item.name)}
-                        cover={item.icon}
+                        cover={item.icons.default}
+                        placeholder={item.icons.thumbnail}
                         alt={item.name}
                         title={item.name}
                         description={item.description}

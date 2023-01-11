@@ -44,7 +44,7 @@ function Home() {
                     <label>Here, all members of the community will help each other understand all the rules, laws, and obstacles you may encounter in their country.  You can join and contribute to our community through the <Typography.Link href="https://github.com/handbookhub">github repository</Typography.Link>, where everyone can contribute an article or fix</label>
                 </div>
                 {category.map((item, key) => (
-                    <CategoryCard link={toSnakeCase(item.name)} cover={item.icon} title={item.name} key={key}/>
+                    <CategoryCard link={toSnakeCase(item.name)} cover={item.icons.default} placeholder={item.icons.thumbnail} title={item.name} key={key}/>
                 ))}
             </div>
         </div>

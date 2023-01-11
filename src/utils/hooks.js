@@ -4,11 +4,9 @@ export function useImage(src, placeholder) {
     const [imageSrc, setImageSrc] = useState(placeholder)
 
     useEffect(() => {
-        console.log(src)
         const imageElement = new Image()
         imageElement.src = src
         imageElement.onload = () => {
-            console.log("set", src)
             setImageSrc(src)
         }
     }, [src])
@@ -25,7 +23,6 @@ export function useImageWithLoader(getImage, placeholder) {
             const imageElement = new Image()
             imageElement.src = src
             imageElement.onload = () => {
-                console.log("set", src)
                 setImageSrc(src)
             }
         })

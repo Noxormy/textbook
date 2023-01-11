@@ -12,8 +12,11 @@ export const Requests = {
     getCategories: gql`
         query {
             category {
-              name
-              icon
+                name
+                icons {
+                    default
+                    thumbnail
+                }
             }
         }
     `,
@@ -23,7 +26,10 @@ export const Requests = {
                 article {
                     name
                     description
-                    icon
+                    icons {
+                        default
+                        thumbnail
+                    }
                 }
             }
         }
