@@ -12,7 +12,7 @@ function Card({className="", link="", cover="", placeholder="", alt="cover", tit
 
     return (
         <Link to={link} className={`card ${className}`}>
-            <AntdCard cover={<Image src={src} placeholder={placeholder} alt={alt}/>}>
+            <AntdCard cover={<Image src={src} className="image" placeholder={placeholder} alt={alt}/>}>
                 <Meta title={title} description={description} />
             </AntdCard>
         </Link>

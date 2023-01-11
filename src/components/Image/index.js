@@ -1,38 +1,22 @@
 import React from "react"
 import PropTypes from "prop-types"
 import placeholderSvg from "../../assets/placeholder.svg"
-import {Image as AntImage} from "antd"
-import {useImage, useImageWithLoader} from "../../utils/hooks"
+import {Image as AntImage, Skeleton} from "antd"
 import "./index.sass"
 
 
-function getImage(src="", className="", alt="", zoom=false, placeholder="", isLoading=true, props) {
-    props = {
-        src,
-        alt,
-        className: `${className} progressiveImage ${isLoading && placeholder === placeholderSvg? "placeholder" : ""}`,
-        ...props
-    }
-
-    if (zoom) {
-        return <AntImage {...props}/>
-    } else {
-        return <img {...props}/>
-    }
-}
-
-
 function ProgressiveImage({src="", className="", alt="", zoom=false, placeholder="", ...props}) {
-    const placeHolderImage = placeholder || placeholderSvg
-    const [imageSrc, isLoading] = useImage(src, placeHolderImage)
-    return getImage(imageSrc, className, alt, zoom, placeHolderImage, isLoading, props)
+    const skeletonPlaceholder = <Skeleton.Image active={true} />
+    const placeholderElement = placeholder ? <AntImage src={placeholder} alt={alt} preview={false} placeholder={skeletonPlaceholder}/> : skeletonPlaceholder
+    const allClassNames = `${className} progressiveImage`
+
+    return (
+        <div className={allClassNames}>
+            <AntImage src={src} alt={alt} preview={zoom} placeholder={placeholderElement} fallback={placeholderSvg} {...props}/>
+        </div>
+    )
 }
 
-function ProgressiveImageWithLoader({loader, className="", alt="", zoom=false, placeholder="", ...props}) {
-    const placeHolderImage = placeholder || placeholderSvg
-    const [imageSrc, isLoading] = useImageWithLoader(loader, placeHolderImage)
-    return getImage(imageSrc, className, alt, zoom, placeHolderImage, isLoading, props)
-}
 
 ProgressiveImage.propTypes = {
     src: PropTypes.string,
@@ -42,12 +26,4 @@ ProgressiveImage.propTypes = {
     placeholder: PropTypes.string,
 }
 
-ProgressiveImageWithLoader.propTypes = {
-    loader: PropTypes.func,
-    className: PropTypes.string,
-    alt: PropTypes.string,
-    zoom: PropTypes.bool,
-    placeholder: PropTypes.string,
-}
-
-export {ProgressiveImage as Image, ProgressiveImageWithLoader as ImageWithLoader}
+export {ProgressiveImage as Image}

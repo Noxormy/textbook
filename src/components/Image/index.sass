@@ -1,6 +1,17 @@
 .progressiveImage
   background-color: transparent
 
-  &.placeholder
+  .ant-image, .ant-skeleton
+    height: 100%
+    width: 100%
+
+    img, .ant-skeleton-image
+      height: 100%
+      width: 100%
+      object-fit: cover
+
+  .ant-image-error
     background-color: #eeeeee
-    object-fit: contain
+
+    img
+      object-fit: contain !important
